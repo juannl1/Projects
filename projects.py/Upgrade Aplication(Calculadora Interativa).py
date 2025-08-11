@@ -15,18 +15,22 @@ def entrada(mensagem):
     if resposta == "restart":
         print("\n🔄 Reiniciando programa...\n")
         sleep(1)
-        for contador in range(5, 0, -1): # contagem regressiva
+        for contador in range(3, 0, -1): # contagem regressiva
             print(contador)
-            sleep(0.3)
+            sleep(0.8)
         rodar_programa_principal()
         exit()
 
     return resposta
 
+# Criando opção de começar de novo o programa
+def rodar_decisao_de_saida():
+        print("Ok, vamos continuar 🤓 ☝.")
+        sleep(1.7)
+        rodar_programa_principal()
+        exit()
 
 # Funções matemáticas
-
-
 def tabuada(numero_tabuado, quantos_numeros):
     for i in range(1, quantos_numeros + 1):
         total = numero_tabuado * i
@@ -46,19 +50,19 @@ def adicao(n1, n2):
 
 def subtração(n1, n2):
     total = n1 - n2
-    print(f"Total: {total}")
+    print(f"Total: {total:.2f}".replace(".", ","))
 
 def multiplicacao(n1, n2):
     total = n1 * n2
-    print(f"Total: {total}")
+    print(f"Total: {total:.2f}".replace(".", ","))
 
 def divisao(n1, n2):
     total = n1 / n2
-    print(f"Total: {total:.2f}")
+    print(f"Total: {total:.2f}".replace(".", ","))
 
 def modulo(n1, n2):
     total = n1 % n2
-    print(f"O resto da divisão {n1} / {n2} = {total}")
+    print(f"O resto da divisão {n1} / {n2} = {total:.2f}".replace(".", ","))
 
 def potenciacao(n1, n2):
     total = n1 ** n2
@@ -70,11 +74,9 @@ def raiz_quadrada(n1):
     # pega parte decimal se existir
     parte_decimal = str(total).split(".")[1] if "." in str(total) else ""
     if len(parte_decimal) > 2:
-        print(f"Total: {total}\nRaiz não exata\n")
+        print(f"\nParabéns! operação realizada com êxito ✅.\nTotal: {total:.2f}\nRaiz não exata\n".replace(".", ","))
     else:
-        print(f"Total: {total}\nRaiz exata\n")
-
-
+        print(f"Total: {total:.2f}\nRaiz exata\n".replace(".", ","))
 
 def porcentagem():
     while True:
@@ -101,29 +103,28 @@ def porcentagem():
 
         while True:
             try:
-                valor_taxa_adicional = int(entrada("Digite o valor do produto: "))
+                valor_taxa_adicional = float(entrada("Digite o valor do produto: "))
                 porcentagem_taxa_adicional = int(entrada("% de taxa adicional: "))
                 
                 taxa_adicional = (porcentagem_taxa_adicional / 100) * valor_taxa_adicional
-                total_taxa_adicinal = taxa_adicional + valor_taxa_adicional
+                total_taxa_adicional = taxa_adicional + valor_taxa_adicional
 
                 sleep(1)
-                print(f"\nParabéns! operação realizada com êxito.\nTaxa adicional: R${taxa_adicional}\nTotal a pagar: R${total_taxa_adicinal}")
+                print(f"\nParabéns! operação realizada com êxito.\n\nTaxa adicional: R${taxa_adicional:.2f}\nTotal a pagar: R${total_taxa_adicional:.2f}".replace(".", ","))
 
                 sleep(1.5)
 
-                decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+                decisão_de_saida = int(entrada("\n1. Continuar\n2. Finalizar Programa\n\n#Responda com números: "))
 
                 
                 if decisão_de_saida == 1:
+                    rodar_decisao_de_saida()
+                    exit()
+
+                else:
                     print("🛑 Interrupção: saindo do programa.")
                     exit()
                     break
-                    
-                else:
-                    print("Ok, vamos continuar")
-                    sleep(0.7)
-                    rodar_programa_principal()
                     
 
             except ValueError:
@@ -135,29 +136,26 @@ def porcentagem():
         print("\n\n", 28*'='," Desconto ",28*'=', "\n\n")
         while True:
             try:
-                valor_desconto = int(entrada("Digite o valor do produto: "))
+                valor_desconto = float(entrada("Digite o valor do produto: "))
                 porcentagem_desconto = int(entrada("% de desconto: "))
 
                 desconto = (porcentagem_desconto / 100) * valor_desconto
                 total_desconto = valor_desconto - desconto
 
-                print(f"\nParabéns! operação realizada com êxito.\nDesconto: R${desconto}\nTotal a pagar: R${total_desconto}")
+                print(f"\nParabéns! operação realizada com êxito.\nDesconto: R${desconto:.2f}\nTotal a pagar: R${total_desconto:.2f}".replace(".", ","))
                 print("\nDigite (restart) para reiniciar o programa...")
             
-                decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+                decisão_de_saida = int(entrada("\n1. Continuar\n2. Finalizar Programa\n\n#Responda com números: "))
 
                 
                 if decisão_de_saida == 1:
-                    print("Obrigado!")
-                    sleep(0.5)
+                    rodar_decisao_de_saida()
+                    exit()
+
+                else:
                     print("🛑 Interrupção: saindo do programa.")
                     exit()
                     break
-                    
-                else:
-                    print("Ok, vamos continuar")
-                    sleep(0.7)
-                    rodar_programa_principal()
 
             except ValueError:
                 print("❌ Erro: insira um número válido.\n")
@@ -214,18 +212,17 @@ def rodar_programa_principal():
                 
                 sleep(1.5)
 
-                decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+                decisão_de_saida = int(entrada("\n1. Continuar\n2. Finalizar Programa\n\n#Responda com números: "))
 
                 
                 if decisão_de_saida == 1:
+                    rodar_decisao_de_saida()
+                    exit()
+
+                else:
                     print("🛑 Interrupção: saindo do programa.")
                     exit()
                     break
-                    
-                else:
-                    print("Ok, vamos continuar")
-                    sleep(0.7)
-                    rodar_programa_principal()
 
             except ValueError:
                 print("❌ Erro: insira um número válido.\n")
@@ -244,18 +241,17 @@ def rodar_programa_principal():
                 
                 sleep(1.5)
 
-                decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+                decisão_de_saida = int(entrada("\n1. Continuar\n2. Finalizar Programa\n\n#Responda com números: "))
 
                 
                 if decisão_de_saida == 1:
+                    rodar_decisao_de_saida()
+                    exit()
+
+                else:
                     print("🛑 Interrupção: saindo do programa.")
                     exit()
                     break
-                    
-                else:
-                    print("Ok, vamos continuar")
-                    sleep(0.7)
-                    rodar_programa_principal()
 
             except ValueError:
                 print("❌ Erro: insira um número válido.\n")
@@ -297,19 +293,17 @@ def rodar_programa_principal():
 
                     sleep(1.5)
 
-                    decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+                    decisão_de_saida = int(entrada("\n1. Continuar\n2. Finalizar Programa\n\n#Responda com números: "))
 
-                    
+                
                     if decisão_de_saida == 1:
+                        rodar_decisao_de_saida()
+                        exit()
+
+                    else:
                         print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
-                        
-                    else:
-                        print("Ok, vamos continuar")
-                        sleep(0.7)
-                        rodar_programa_principal()
-
                 except ValueError:
                     print("❌ Erro: insira um número válido.\n")
                     sleep(2)
@@ -329,18 +323,17 @@ def rodar_programa_principal():
 
                     sleep(1.5)
 
-                    decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+                    decisão_de_saida = int(entrada("\n1. Continuar\n2. Finalizar Programa\n\n#Responda com números: "))
 
-                    
+                
                     if decisão_de_saida == 1:
+                        rodar_decisao_de_saida()
+                        exit()
+
+                    else:
                         print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
-                        
-                    else:
-                        print("Ok, vamos continuar")
-                        sleep(0.7)
-                        rodar_programa_principal()
 
                 except ValueError:
                     print("❌ Erro: insira um número válido.\n")
@@ -360,18 +353,17 @@ def rodar_programa_principal():
                     
                     sleep(1.5)
 
-                    decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+                    decisão_de_saida = int(entrada("\n1. Continuar\n2. Finalizar Programa\n\n#Responda com números: "))
 
-                    
+                
                     if decisão_de_saida == 1:
+                        rodar_decisao_de_saida()
+                        exit()
+
+                    else:
                         print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
-                        
-                    else:
-                        print("Ok, vamos continuar")
-                        sleep(0.7)
-                        rodar_programa_principal()
 
                 except ValueError:
                     print("❌ Erro: insira um número válido.\n")
@@ -391,18 +383,16 @@ def rodar_programa_principal():
                     
                     sleep(1.5)
 
-                    decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+                    decisão_de_saida = int(entrada("\n1. Continuar\n2. Finalizar Programa\n\n#Responda com números: "))
 
-                    
                     if decisão_de_saida == 1:
+                        rodar_decisao_de_saida()
+                        exit()
+
+                    else:
                         print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
-                        
-                    else:
-                        print("Ok, vamos continuar")
-                        sleep(0.7)
-                        rodar_programa_principal()
 
                 except ValueError:
                     print("❌ Erro: insira um número válido.\n")
@@ -422,18 +412,17 @@ def rodar_programa_principal():
                     
                     sleep(1.5)
 
-                    decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+                    decisão_de_saida = int(entrada("\n1. Continuar\n2. Finalizar Programa\n\n#Responda com números: "))
 
                     
                     if decisão_de_saida == 1:
+                        rodar_decisao_de_saida()
+                        exit()
+
+                    else:
                         print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
-                        
-                    else:
-                        print("Ok, vamos continuar")
-                        sleep(0.7)
-                        rodar_programa_principal()
 
                 except ValueError:
                     print("❌ Erro: insira um número válido.\n")
@@ -453,18 +442,16 @@ def rodar_programa_principal():
 
                     sleep(1.5)
 
-                    decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+                    decisão_de_saida = int(entrada("\n1. Continuar\n2. Finalizar Programa\n\n#Responda com números: "))
 
-                    
                     if decisão_de_saida == 1:
+                        rodar_decisao_de_saida()
+                        exit()
+
+                    else:
                         print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
-                        
-                    else:
-                        print("Ok, vamos continuar")
-                        sleep(0.7)
-                        rodar_programa_principal()
 
                 except ValueError:
                     print("❌ Erro: insira um número válido.\n")
@@ -484,19 +471,17 @@ def rodar_programa_principal():
 
                     sleep(1.5)
 
-                    decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+                    decisão_de_saida = int(entrada("\n1. Continuar\n2. Finalizar Programa\n\n#Responda com números: "))
 
                     
                     if decisão_de_saida == 1:
+                        rodar_decisao_de_saida()
+                        exit()
+
+                    else:
                         print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
-                        
-                    else:
-                        print("Ok, vamos continuar")
-                        sleep(0.7)
-                        
-                        rodar_programa_principal()
 
                 except ValueError:
                     print("❌ Erro: insira um número válido.\n")
