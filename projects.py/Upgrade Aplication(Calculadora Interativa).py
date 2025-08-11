@@ -1,25 +1,21 @@
-
 from time import sleep
 from math import factorial, sqrt
 from os import system
-import colorama
-
-init() #inicilizar colorama
 
 
-#limpar terminal
 
+# limpar terminal
 def limpar_terminal():
     system("cls")
 
-#Criando uma opção de "Restart"
+# Criando uma opção de "Restart"
 def entrada(mensagem):
     resposta = input(mensagem).strip().lower()
 
     if resposta == "restart":
         print("\n🔄 Reiniciando programa...\n")
         sleep(1)
-        for contador in range(5, 0, -1): #contagem regressiva
+        for contador in range(5, 0, -1): # contagem regressiva
             print(contador)
             sleep(0.3)
         rodar_programa_principal()
@@ -28,7 +24,7 @@ def entrada(mensagem):
     return resposta
 
 
-#Funções matemáticas
+# Funções matemáticas
 
 
 def tabuada(numero_tabuado, quantos_numeros):
@@ -43,7 +39,7 @@ def fatorial(n1):
             print(f"{i}! = {factorial(i)}")
             sleep(0.01)
 
-#Calculos específicos
+# Calculos específicos
 def adicao(n1, n2):
     total = n1 + n2
     print(f"Total: {total}")
@@ -89,13 +85,13 @@ def porcentagem():
                     break
 
                 else:
-                    print("ERRO.\nInsira um número inteiro.\n\n")
+                    print("⚠️ Aviso: valor fora do intervalo permitido.\n\n")
                     sleep(1)
                     print("Tente novamente...")
                     sleep(2)
 
             except ValueError:
-                print("Resposta Inválida.\n")
+                print("❌ Erro: insira um número válido.\n")
                 sleep(2)
 
 
@@ -106,13 +102,13 @@ def porcentagem():
         while True:
             try:
                 valor_taxa_adicional = int(entrada("Digite o valor do produto: "))
-                porcentagem_taxa_adicional = int(entrada("% De taxa adicional: "))
+                porcentagem_taxa_adicional = int(entrada("% de taxa adicional: "))
                 
                 taxa_adicional = (porcentagem_taxa_adicional / 100) * valor_taxa_adicional
                 total_taxa_adicinal = taxa_adicional + valor_taxa_adicional
 
                 sleep(1)
-                print(f"\nTaxa Adicional: R${taxa_adicional}\nTotal a pagar: R${total_taxa_adicinal}")
+                print(f"\nParabéns! operação realizada com êxito.\nTaxa adicional: R${taxa_adicional}\nTotal a pagar: R${total_taxa_adicinal}")
 
                 sleep(1.5)
 
@@ -120,18 +116,18 @@ def porcentagem():
 
                 
                 if decisão_de_saida == 1:
-                    print("Obrigado!")
+                    print("🛑 Interrupção: saindo do programa.")
                     exit()
                     break
                     
                 else:
-                    print("Ok, Vamos continuar")
+                    print("Ok, vamos continuar")
                     sleep(0.7)
                     rodar_programa_principal()
                     
 
             except ValueError:
-                print("Resposta Inválida.\n")
+                print("❌ Erro: insira um número válido.\n")
                 sleep(2)
 
     elif decisao_porcentagem == 2:
@@ -140,57 +136,75 @@ def porcentagem():
         while True:
             try:
                 valor_desconto = int(entrada("Digite o valor do produto: "))
-                porcentagem_desconto = int(entrada("% De desconto: "))
+                porcentagem_desconto = int(entrada("% de desconto: "))
 
                 desconto = (porcentagem_desconto / 100) * valor_desconto
                 total_desconto = valor_desconto - desconto
 
-                print(f"Desconto: R${desconto}\nTotal a pagar: R${total_desconto}")
-                print("\nDigite (restart) para reniciar o programa...")
+                print(f"\nParabéns! operação realizada com êxito.\nDesconto: R${desconto}\nTotal a pagar: R${total_desconto}")
+                print("\nDigite (restart) para reiniciar o programa...")
             
-                break
+                decisão_de_saida = int(entrada("\n1. Finalizar programa\n2. Continuar\n\n#Responda com números: "))
+
+                
+                if decisão_de_saida == 1:
+                    print("Obrigado!")
+                    sleep(0.5)
+                    print("🛑 Interrupção: saindo do programa.")
+                    exit()
+                    break
+                    
+                else:
+                    print("Ok, vamos continuar")
+                    sleep(0.7)
+                    rodar_programa_principal()
 
             except ValueError:
-                print("Resposta Inválida.\n")
+                print("❌ Erro: insira um número válido.\n")
 
 
 
-#Programa principal #Rodar_programa_principal()
+# Programa principal # Rodar_programa_principal()
 def rodar_programa_principal():
 
     limpar_terminal()
     print(28*'=',"Calculadora Interativa",27*'=')
     sleep(1)
 
-    #Perguntando ao usuário qual operação ele vai utilizar
+    # Perguntando ao usuário qual operação ele vai utilizar
 
 
     while True:
         try:
-            lista_opcoes = [" Tabuada", " Fatorial(Tabuada)", " Cálculo Específico"]
+            lista_opcoes = [" Tabuada", " Fatorial(Tabuada)", " Cálculo específico"]
 
             for indice, opcoes in enumerate(lista_opcoes, start=1):
                 print(f"{indice}. {opcoes}")
                 sleep(0.1)
 
-            print("\nSe for preciso reniciar o programa escreva (restart) em qualquer caixa de texto\n")
+            print("\n💡 Dica: use 'restart' para reiniciar o programa em qualquer entrada.\n")
 
             sleep(1)
 
             decisao = int(entrada("\n#Responda com números: "))
-            
-            break
+
+            if decisao in [1, 2, 3]:
+                break
+
+            else:
+                print("❌ Erro: insira algumas das opções (1,2,3)")
+                sleep(2)
 
         except ValueError:
-            print("Resposta Inválida.\n")
+            print("❌ Erro: insira um número válido.\n")
             sleep(2)
 
 
-    #Usuário escolheu tabuada...
+    # Usuário escolheu tabuada...
     if decisao == 1:
         
-        #Rodando Tabuada
-        print("\n\n", 28*'='," Tabuada ",27*'=', "\n\n")
+        # Rodando tabuada
+        print("\n\n", 28*'='," Tabuada ", 27*'=', "\n\n")
         
         while True:
             try:
@@ -204,24 +218,24 @@ def rodar_programa_principal():
 
                 
                 if decisão_de_saida == 1:
-                    print("Obrigado!")
+                    print("🛑 Interrupção: saindo do programa.")
                     exit()
                     break
                     
                 else:
-                    print("Ok, Vamos continuar")
+                    print("Ok, vamos continuar")
                     sleep(0.7)
                     rodar_programa_principal()
 
             except ValueError:
-                print("Resposta Inválida.\n")
+                print("❌ Erro: insira um número válido.\n")
                 sleep(2)
 
-    #Usuário escolheu Fatorial... 
+    # Usuário escolheu fatorial... 
     elif decisao == 2:
 
-        #Rodando Fatorial(tabuada)
-        print("\n\n", 28*'='," Fatorial ",27*'=', "\n\n")
+        # Rodando fatorial(tabuada)
+        print("\n\n", 28*'='," Fatorial ", 27*'=', "\n\n")
 
         while True:
             try:
@@ -234,28 +248,28 @@ def rodar_programa_principal():
 
                 
                 if decisão_de_saida == 1:
-                    print("Obrigado!")
+                    print("🛑 Interrupção: saindo do programa.")
                     exit()
                     break
                     
                 else:
-                    print("Ok, Vamos continuar")
+                    print("Ok, vamos continuar")
                     sleep(0.7)
                     rodar_programa_principal()
 
             except ValueError:
-                print("Resposta Inválida.\n")
+                print("❌ Erro: insira um número válido.\n")
         
-    #Usuário escolheu Cálculo específico...
+    # Usuário escolheu cálculo específico...
     elif decisao == 3:
 
-        #Rodando Cálculo Específico
-        print("\n\n", 28*'=', " Cálculo Específico ",27*'=', "\n\n")
+        # Rodando cálculo específico
+        print("\n\n", 28*'='," Cálculo Específico ", 27*'=', "\n\n")
 
-        #Perguntando ao usuário qual operador matemático
+        # Perguntando ao usuário qual operador matemático
         while True:
             try:
-                operadores_matematicos = ["Adição", "Subtração", "Multiplicação", "Divisão", "Módulo (Resto da divisão", "Potênciação", "Raiz Quadrada", "Porcentagem (Calcular Desconto ou taxa adicional)"]
+                operadores_matematicos = ["Adição", "Subtração", "Multiplicação", "Divisão", "Módulo (Resto da divisão)", "Potênciação", "Raiz Quadrada", "Porcentagem (Calcular desconto ou taxa adicional)"]
 
                 for indice, operadores in enumerate(operadores_matematicos, start=1):
                     print(f"{indice}. {operadores}")
@@ -266,18 +280,18 @@ def rodar_programa_principal():
                 break
 
             except ValueError:
-                print("Resposta Inválida.\n")
+                print("❌ Erro: operador inválido.")
                 sleep(2)
         
         if decisao_operador_matemático == 1:
 
-            #Rodando adição
-            print("\n\n", 28*'='," Adição ",27*'=', "\n\n")
+            # Rodando adição
+            print("\n\n", 28*'='," Adição ", 27*'=', "\n\n")
 
             while True:
                 try:
-                    adiçao_n1 = int(entrada("1° Número: "))
-                    adiçao_n2 = int(entrada("2° Numero: "))
+                    adiçao_n1 = int(entrada("1° número: "))
+                    adiçao_n2 = int(entrada("2° número: "))
 
                     adicao(adiçao_n1, adiçao_n2)
 
@@ -287,29 +301,29 @@ def rodar_programa_principal():
 
                     
                     if decisão_de_saida == 1:
-                        print("Obrigado!")
+                        print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
                         
                     else:
-                        print("Ok, Vamos continuar")
+                        print("Ok, vamos continuar")
                         sleep(0.7)
                         rodar_programa_principal()
 
                 except ValueError:
-                    print("Resposta Inválida.\n")
+                    print("❌ Erro: insira um número válido.\n")
                     sleep(2)
                     
 
-        elif decisao_operador_matemático == 3:
+        elif decisao_operador_matemático == 2:
 
-            #Rodando Subtração
-            print("\n\n", 28*'='," Subtração ",27*'=', "\n\n")
+            # Rodando subtração
+            print("\n\n", 28*'='," Subtração ", 27*'=', "\n\n")
 
             while True:
                 try:
-                    subtração_n1 = int(entrada("1° Número: "))
-                    subtração_n2 = int(entrada("2° Numero: "))
+                    subtração_n1 = int(entrada("1° número: "))
+                    subtração_n2 = int(entrada("2° número: "))
 
                     subtração(subtração_n1, subtração_n2)
 
@@ -319,28 +333,28 @@ def rodar_programa_principal():
 
                     
                     if decisão_de_saida == 1:
-                        print("Obrigado!")
+                        print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
                         
                     else:
-                        print("Ok, Vamos continuar")
+                        print("Ok, vamos continuar")
                         sleep(0.7)
                         rodar_programa_principal()
 
                 except ValueError:
-                    print("Resposta Inválida.\n")
+                    print("❌ Erro: insira um número válido.\n")
                     sleep(2)
 
 
         elif decisao_operador_matemático == 3:
 
-            #Rodando Multiplicação
-            print("\n\n", 28*'='," Multiplicação ",27*'=', "\n\n")
+            # Rodando multiplicação
+            print("\n\n", 28*'='," Multiplicação ", 27*'=', "\n\n")
             while True:
                 try:
-                    multiplicacao_n1 = int(entrada("1° Número: "))
-                    multiplicacao_n2 = int(entrada("2° Numero: "))
+                    multiplicacao_n1 = int(entrada("1° número: "))
+                    multiplicacao_n2 = int(entrada("2° número: "))
 
                     multiplicacao(multiplicacao_n1, multiplicacao_n2)
                     
@@ -350,23 +364,23 @@ def rodar_programa_principal():
 
                     
                     if decisão_de_saida == 1:
-                        print("Obrigado!")
+                        print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
                         
                     else:
-                        print("Ok, Vamos continuar")
+                        print("Ok, vamos continuar")
                         sleep(0.7)
                         rodar_programa_principal()
 
                 except ValueError:
-                    print("Resposta Inválida.\n")
+                    print("❌ Erro: insira um número válido.\n")
                     sleep(2)
 
         elif decisao_operador_matemático == 4:
 
-            #Rodando Divisão
-            print("\n\n", 28*'='," Divisão ",27*'=', "\n\n")
+            # Rodando divisão
+            print("\n\n", 28*'='," Divisão ", 27*'=', "\n\n")
 
             while True:
                 try:
@@ -381,23 +395,23 @@ def rodar_programa_principal():
 
                     
                     if decisão_de_saida == 1:
-                        print("Obrigado!")
+                        print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
                         
                     else:
-                        print("Ok, Vamos continuar")
+                        print("Ok, vamos continuar")
                         sleep(0.7)
                         rodar_programa_principal()
 
                 except ValueError:
-                    print("Resposta Inválida.\n")
+                    print("❌ Erro: insira um número válido.\n")
                     sleep(2)
 
         elif decisao_operador_matemático == 5:
 
-            #Rodando Módulo
-            print("\n\n", 28*'='," Módulo ",27*'=', "\n\n")
+            # Rodando módulo
+            print("\n\n", 28*'='," Módulo ", 27*'=', "\n\n")
             
             while True:
                 try:
@@ -412,23 +426,23 @@ def rodar_programa_principal():
 
                     
                     if decisão_de_saida == 1:
-                        print("Obrigado!")
+                        print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
                         
                     else:
-                        print("Ok, Vamos continuar")
+                        print("Ok, vamos continuar")
                         sleep(0.7)
                         rodar_programa_principal()
 
                 except ValueError:
-                    print("Resposta Inválida.\n")
+                    print("❌ Erro: insira um número válido.\n")
                     sleep(2)
 
         elif decisao_operador_matemático == 6:
 
-            #Rodando Potenciação
-            print("\n\n", 28*'='," Potenciação ",27*'=', "\n\n")
+            # Rodando potenciação
+            print("\n\n", 28*'='," Potenciação ", 27*'=', "\n\n")
 
             while True:
                 try:
@@ -443,25 +457,25 @@ def rodar_programa_principal():
 
                     
                     if decisão_de_saida == 1:
-                        print("Obrigado!")
+                        print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
                         
                     else:
-                        print("Ok, Vamos continuar")
+                        print("Ok, vamos continuar")
                         sleep(0.7)
                         rodar_programa_principal()
 
                 except ValueError:
-                    print("Resposta Inválida.\n")
+                    print("❌ Erro: insira um número válido.\n")
                     sleep(2)
                     
                 
 
         elif decisao_operador_matemático == 7:
 
-            #Rodando Raiz Quadrada (sqrt)
-            print("\n\n", 28*'='," Raiz Quadrada ",27*'=', "\n\n")
+            # Rodando raiz quadrada (sqrt)
+            print("\n\n", 28*'='," Raiz Quadrada ", 27*'=', "\n\n")
             while True:
                 try:
                     raiz = int(entrada("Raiz: "))
@@ -474,24 +488,24 @@ def rodar_programa_principal():
 
                     
                     if decisão_de_saida == 1:
-                        print("Obrigado!")
+                        print("🛑 Interrupção: saindo do programa.")
                         exit()
                         break
                         
                     else:
-                        print("Ok, Vamos continuar")
+                        print("Ok, vamos continuar")
                         sleep(0.7)
                         
                         rodar_programa_principal()
 
                 except ValueError:
-                    print("Resposta Inválida.\n")
+                    print("❌ Erro: insira um número válido.\n")
                     sleep(2)
 
         elif decisao_operador_matemático == 8:
 
-            #Rodando Porcentagem
-            print("\n\n", 28*'='," Porcentagem ",27*'=', "\n\n")
+            # Rodando porcentagem
+            print("\n\n", 28*'='," Porcentagem ", 27*'=', "\n\n")
             porcentagem()
 
 rodar_programa_principal()
