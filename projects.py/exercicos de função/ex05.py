@@ -12,24 +12,8 @@ n1 = str(input("Digite a palavra: "))
 
 contar_vogais(n1)"""
 
-def colorir(texto, cor):
-    cores = {
-        "vermelho": "\033[31m",
-        "amarelo": "\033[33m",
-        "verde": "\033[32m",
-        "laranja": "\033[93m",  # amarelo brilhante como laranja
-        "preto": "\033[30m",
-        "reset": "\033[0m"
-    }
-    return f"{cores.get(cor, cores['reset'])}{texto}{cores['reset']}"
+import time
 
-lista_cores = [
-    colorir("Vermelho", "vermelho"),
-    colorir("Amarelo", "amarelo"),
-    colorir("Verde", "verde"),
-    colorir("Laranja", "laranja"),
-    colorir("Preto", "preto"),
-]
-
-for item in lista_cores:
-    print(item)
+for i in range(5, 0, -1):
+    print(f"\rContagem: {i}", end="")
+    time.sleep(1)

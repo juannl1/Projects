@@ -13,10 +13,9 @@ def entrada(mensagem):
     resposta = input(mensagem).strip().lower()
 
     if resposta == "restart":
-        print("\n🔄 Reiniciando programa...\n")
         sleep(1)
         for contador in range(3, 0, -1): # contagem regressiva
-            print(contador)
+            print(f"\r🔄 Reiniciando programa...{contador}", end="")
             sleep(0.8)
         rodar_programa_principal()
         exit()
