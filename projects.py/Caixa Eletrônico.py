@@ -8,6 +8,7 @@ João precisa sacar dinheiro para suas despesas semanais. Ele decide ir até o c
 
 
 
+
 from os import system
 from time import sleep
 from random import randint, choice, sample
@@ -17,15 +18,33 @@ from random import randint, choice, sample
 def limpar_terminal():
     system("cls")
 
+def saque():
+        print("4 Digitos")
+        for x in range(1, 4):
+            
+            informando_codigo_para_saque = int(input("Senha de saque > > > "))
 
+            if informando_codigo_para_saque == 1234:
+                print("\n✅ Sucesso\n")
+                break
 
+        else:
+            print("\n❌ Acesso Negado.")
+            exit()
 
+        valores_disponiveis_para_saque = (20, 40, 50, 100, 300, 500, 900, 1000)
 
-
+        print("\nSaque\n")
+        for i, valores in enumerate(valores_disponiveis_para_saque, start=1):
+            print(f"\nNota: R${i} - Quantidade de notas no caixa: {valores}")
+        
+        qtd_de_saque = int(input("Digite sua opção > > > "))
+        print("Digite")
 
 
 
 limpar_terminal()
+
 print("<", 20*'-', "CAIXA ELETRÔNICO", 20*'-', ">")
 
 print("Insira o cartão...\n")
@@ -36,6 +55,7 @@ sleep(1)
 
 
 senha_do_joao = 123456
+codigo_do_saque = 1234
 print("Você tem 3 tentativas para inserir sua senha")
 for i in range(1, 4):
     senha = int(input("\nDigite sua senha: "))
@@ -50,7 +70,7 @@ for i in range(1, 4):
 else:
     print("\nSuas tentativas acabaram\n")
     sleep(1.5)
-    print("\n❌Acesso negado...\n")
+    print("\n❌ Acesso negado...\n")
     exit()
 
 
@@ -78,12 +98,9 @@ banco_de_notas = {
 
 
 
-
-
 if decisao_do_menu_de_opcoes == 1:
-    valores_disponiveis_para_saque = (20, 40, 50, 100, 300, 500, 900, 1000)
-    for i, valor_das_notas in enumerate(valores_disponiveis_para_saque, start=1):
-        print(f"{i}. R${valor_das_notas},00")
-        sleep(1)
+    saque()
 
-    qtd_de_saque = int(input("Digite sua opção: "))
+
+
+
