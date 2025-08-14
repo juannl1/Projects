@@ -19,7 +19,7 @@ def limpar_terminal():
     system("cls")
 
 def saque():
-        print("4 Digitos")
+        print("\nSenha de 4 Digitos.")
         for x in range(1, 4):
             
             informando_codigo_para_saque = int(input("Senha de saque > > > "))
@@ -34,12 +34,33 @@ def saque():
 
         valores_disponiveis_para_saque = (20, 40, 50, 100, 300, 500, 900, 1000)
 
-        print("\nSaque\n")
+        print("<", 20*'-', "Saque", 20*'-', ">")
+        sleep(1)
         for i, valores in enumerate(valores_disponiveis_para_saque, start=1):
-            print(f"\nNota: R${i} - Quantidade de notas no caixa: {valores}")
+            print(f"{i}. R${valores},00")
+            sleep(0.1)
+
         
-        qtd_de_saque = int(input("Digite sua opção > > > "))
+        qtd_de_saque = int(input("\nDigite sua opção > > > "))
         print("Digite")
+
+        1 == 20
+        2 == 40
+        3 == 50
+        4 == 100
+        5 == 300
+        6 == 500
+        7 == 900
+        8 == 1000
+        if qtd_de_saque <= salario:
+            print("Saque concluido!")
+            for x in range(1, 4):
+                print(f"\rRetire seu cartão em {x}", end='')
+                sleep(1)
+            input("Aperte (ENTER) para retirar o cartão")
+
+
+        
 
 
 
@@ -48,7 +69,7 @@ limpar_terminal()
 print("<", 20*'-', "CAIXA ELETRÔNICO", 20*'-', ">")
 
 print("Insira o cartão...\n")
-comecando_programa = input("Aperte (ENTER) para inserir o cartão\n\n> > > ")
+input("Aperte (ENTER) para inserir o cartão\n\n> > > ")
 
 print("\b\nIniciando...")
 sleep(1)
@@ -56,6 +77,7 @@ sleep(1)
 
 senha_do_joao = 123456
 codigo_do_saque = 1234
+salario = 1518
 print("Você tem 3 tentativas para inserir sua senha")
 for i in range(1, 4):
     senha = int(input("\nDigite sua senha: "))
@@ -76,7 +98,7 @@ else:
 
 print("<", 20*'-', "Bem vindo, João", 20*'-', ">\n")
 
-menu_de_opcoes = ("Saque", "Consulta de saldo", "Extrato", "Depósitos", "Transferências", "Pagamentos", "Alterar senha")
+menu_de_opcoes = ("Saque.", "Consulta de saldo.", "Extrato.", "Depósitos.", "Transferências.", "Pagamentos.", "Alterar senha.")
 
 for i , opcoes in enumerate(menu_de_opcoes, start=1):
     print(f"{i}. {opcoes}")
