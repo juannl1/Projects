@@ -20,6 +20,7 @@ def limpar_terminal():
 
 def saque():
         print("\nSenha de 4 Digitos.")
+        sleep(0.5)
         for x in range(1, 4):
             
             informando_codigo_para_saque = int(input("Senha de saque > > > "))
@@ -52,12 +53,15 @@ def saque():
         6 == 500
         7 == 900
         8 == 1000
+        
         if qtd_de_saque <= salario:
-            print("Saque concluido!")
-            for x in range(1, 4):
-                print(f"\rRetire seu cartão em {x}", end='')
+            print(qtd_de_saque)
+            print("✅ Saque efetuado com sucesso!")
+            sleep(1)
+            for i in range(1, 4):
+                print(f"\rRetire seu cartão em {i}", end='')
                 sleep(1)
-            input("Aperte (ENTER) para retirar o cartão")
+            input("Aperte (ENTER) para retirar o cartão\n\n> > >")
 
 
         
