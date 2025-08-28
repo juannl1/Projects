@@ -31,7 +31,10 @@ def Temperatura(temperatura_definida):
         print(f"Temperatura ambiente: {temperatura_definida}°C")
         
         if temperatura_definida == temp_do_ambiente:
-            print("ligando")
+            print("ligando termostato")
+
+            break
+        
             
     
 
@@ -50,8 +53,9 @@ print(f"\n\nTEMPERATURA EXTERNA: {temp_do_ambiente_sorteada}°C")
 print("\nO Termostato da casa está em 22°C.")
 
 decisao = str(input("\n\nVocê deseja trocar a temperatura?\n\n> ")).lower().strip()
+print(decisao)
 
-if decisao in ["não", "nao", "n", "no"]:
+if decisao == "não" and "nao" and "n" and "no":
     print(f"Temperatuda do termostato está em {temp_do_termostato_padrao}°C")
     
 else:
@@ -60,7 +64,7 @@ else:
 
 if temp_do_termostato_padrao > temperatura_alterada:
 
-    print("➡  Ar-Condicionado LIGADO ❄️  ...\n")
+    print("➡  REFRIGERADOR LIGADO ❄️  ...\n")
 
     while True: #Diminuindo temperatura
 
@@ -70,7 +74,7 @@ if temp_do_termostato_padrao > temperatura_alterada:
         if temp_do_termostato_padrao == temperatura_alterada - 1:
             print(f"\nTemperatura alcançada {temperatura_alterada}°C")
             sleep(1.5)
-            print("\nDesligando Ar-Condicionado...")
+            print("\nDesligando refrigerador...")
             Temperatura(temperatura_alterada)
             break
 
@@ -79,7 +83,7 @@ if temp_do_termostato_padrao > temperatura_alterada:
 
 elif temp_do_termostato_padrao < temperatura_alterada:
 
-    print("➡  Aquecedor LIGADO 🔥  ...")
+    print("➡  AQUECEDOR LIGADO 🔥  ...")
 
     while True:
         temp_do_termostato_padrao += 1
@@ -95,7 +99,7 @@ elif temp_do_termostato_padrao < temperatura_alterada:
 else:
     print(f"Ok, mantendo em {temp_do_termostato_padrao}")
 
-Temperatura()
+
 
 
 
