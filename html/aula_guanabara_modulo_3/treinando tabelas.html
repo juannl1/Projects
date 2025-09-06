@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: beige;
+        }
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 300px;
+            background-color: white;
+        }
+        td, td, th {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+
+        }
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        #titulo_filmes {
+            font-family: monospace;
+            font-size: 30px;
+            padding: 20px;
+            height: 30px;
+            background-image: linear-gradient(to right, rgb(131, 196, 221), rgb(82, 82, 238));
+        }
+        #boletim {
+            width: 600px;
+            border-collapse: collapse;
+        }
+        .titulo {
+            background-color: gray;
+            color: white;
+            font-weight: bolder;
+
+        }
+        #caption_boletim {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 50px;
+            background-color: rgb(0, 0, 0);
+            color: white;
+        }
+    </style>
+    <title>Tabelas</title>
+</head>
+<body>
+    <h1>Parte 1 do desafio</h1>
+    <table>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td rowspan="2">3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td colspan="3">8</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td rowspan="2">10</td>
+            <td colspan="2">11</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+        </tr>
+    </table>
+
+    <h1>Parte 2 do desafio</h1>
+
+    <table>
+        <tr>
+            <td colspan="5">A</td>
+            <td colspan="2" rowspan="4">B</td>
+        </tr>
+        <tr>
+            <td colspan="2" rowspan="4">C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+        </tr>
+        <tr>
+            <td>G</td>
+            <td>H</td>
+            <td>I</td>
+        </tr>
+        <tr>
+            <td>J</td>
+            <td>L</td>
+            <td>M</td>
+        </tr>
+        <tr>
+            <td colspan="4">N</td>
+        </tr>
+        
+    </table>
+    
+    <h1>Exemplo de uma tabela real</h1>
+
+    <table>
+        <caption id="titulo_filmes">Filmes favoritos</caption>
+        <thead>
+            <th scope="col">Grupo</th>
+            <th scope="col">Nomes</th>
+            <th colspan="4" scope="colgroup">Filmes</th>
+        </thead>
+        <tbody>
+            <tr>
+                <th rowspan="3" scope="rowgroup">Mulheres</th>
+                <td>Ana Maria Santos</td>
+                <td>Alien</td>
+                <td>Rambo</td>
+                <td>Vingadores</td>
+            
+            <tr>
+                <td>Beatriz Souza</td>
+                <td>Hulk</td>
+                <td>Inception</td>
+                <td>Batman</td>
+            </tr>
+            <tr>
+                <td>Cláudia Melo</td>
+                <td>Oblivion</td>
+                <td>Matrix</td>
+                <td>Big Hero 6</td>
+            </tr>
+            <tr>
+                <th rowspan="3" scope="rowgroup">Homens</th>
+                <td>Bruno Mendonça</td>
+                <td>Intocáveis</td>
+                <td>Aminésia</td>
+                <td>Gladiador</td>
+            </tr>
+            <tr>
+                <td>Daniel Lourenço</td>
+                <td>WALL-E</td>
+                <td>Oldboy</td>
+                <td>Dangal</td>
+            </tr>
+            <tr>
+                <td>Fabiano Mota</td>
+                <td>Star Wars 5</td>
+                <td>Taxi Driver</td>
+                <td>Toy Story</td>
+
+            </tr>
+            <tfoot>
+                <th colspan="4" scope="row">Total</th>
+                <td>1000</td>
+            </tfoot>
+            
+        </tbody>
+    </table>
+
+
+
+    <h1>Desafio</h1>
+
+    
+    <table id="boletim">
+        <caption id="caption_boletim">Boletim Escolar</caption>
+        <tr>
+            <th class="titulo" rowspan="2" colspan="2" scope="col">Área</th>
+            <th class="titulo" rowspan="2" scope="col">Disciplinas</th>
+            <th class="titulo" colspan="2" scope="colgroup">Notas</th>
+            <th class="titulo" colspan="2" rowspan="2" scope="col">Média</th>
+        </tr>
+        <tr>
+            <th class="titulo" scope="col">Nota 1</th>
+            <th class="titulo" scope="col">Nota 2</th>
+        </tr>
+        <tr>
+            <th rowspan="4" colspan="2" scope="rowgroup">Exatas</th>
+            <td>Matemática</td>
+            <td>0,0</td>
+            <td>0,0</td>
+            <td>0,0</td>
+        </tr>
+        <tr>
+            <td>Física</td>
+            <td>0,0</td>
+            <td>0,0</td>
+            <td>0,0</td>
+        </tr>
+        <tr>
+            <td>Química</td>
+            <td>0,0</td>
+            <td>0,0</td>
+            <td>0,0</td>
+        </tr>
+        <tr>
+            <td>Biologia</td>
+            <td>0,0</td>
+            <td>0,0</td>
+            <td>0,0</td>
+        </tr>
+        <tr>
+            <th class="titulo" colspan="5" scope="row">Média de Exatas</th>
+            <td class="titulo">0,0</td>
+        </tr>
+        <tr>
+            <th colspan="2" rowspan="2" scope="rowgroup">Humanas</th>
+            <td>História</td>
+            <td>0,0</td>
+            <td>0,0</td>
+            <td>0,0</td>
+        </tr>
+        <tr>
+            <td>Geografia</td>
+            <td>0,0</td>
+            <td>0,0</td>
+            <td>0,0</td>
+        </tr>
+        <tr>
+            <th class="titulo" colspan="5" scope="row">Média de Humanas</th>
+            <td class="titulo">0,0</td>
+        </tr>
+    </table>
+</body>
+</html>
