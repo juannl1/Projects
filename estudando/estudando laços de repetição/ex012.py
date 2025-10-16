@@ -3,7 +3,7 @@ soma_notas = 0
 numero_de_alunos = 0
 
 while True:
-    nota = int(input(f"Digite a nota do aluno {numero_de_alunos + 1}° (-1 para finalizar) > > > "))
+    nota = float(input(f"Digite a nota do aluno {numero_de_alunos + 1}° (-1 para finalizar) > > > "))
     
     
     if nota == -1:
