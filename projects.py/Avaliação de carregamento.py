@@ -8,6 +8,8 @@ print(30*"=")
 print("Viação Nossa Senhora do Amparo")
 print(30*"=")
 
+
+# Começando perguntas para o formulário
 matricula_do_fiscal = int(input("\nNº Matrícula: "))
 
 ponto_de_contole = int(input("1. ESTAÇÃO N.S. MERCÊS (RIO)\n2. ESTAÇÃO JOÃO BRASIL (NIT)\n3. ESTAÇÃO N.S. MERCÊS (VOLTA)\n4. ESTAÇÃO JOÃO BRASIL (VOLTA)\n5. TRIBOBÓ VOLTA (RIO)\n6. TRIBOBÓ VOLTA (NIT)\n7. TRIBOBÓ URBn\n\n> > > "))
@@ -24,6 +26,9 @@ saida_de_origem = str(input("Hora saída origem: "))
 print(type(saida_de_origem))
 
 chegada_no_ponto = str(input("Hora Chegada Ponto: "))
+
+# Terminando formulário
+
 while True:
     try:
         roleta_inicial = int(input("Nº Roleta (INICIAL): "))
@@ -42,7 +47,3 @@ while True:
 
 
 passageiros_em_pé = int(input("Nº Passageiro em pé: "))
-
-dados {
-    
-}
