@@ -40,7 +40,7 @@ class FormularioOnibus():
             print(f"Ônibus com {calculo_vagas} vagas\nVagas no Ônibus {calculo_de_pessoas_no_onibus}/52\n\n")
 
         else:
-            print("Ônibus lotado...\nVagas no Ônibus 52/52\n\n")
+            print("Ônibus lotado...\nSem vagas no Ônibus 52/52\n\n")
         
     
     # Verificando quanto tempo demorou para chegar no destino
@@ -86,6 +86,7 @@ def iniciar_programa():
     while True:
         try:
             matricula_fiscal = int(input("\n\nNúmero da matrícula: ")) # Upgrade futuro: consultar a matrícula no banco de dados(.json)
+            
             form.matricula_fiscal = matricula_fiscal
             break
 
@@ -193,9 +194,16 @@ def iniciar_programa():
             if verificar_infos == "s":
 
                 # Adicionando informação no .json
-                nome_pasta = "Banco-de-dados"
+                diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+
+                # 2. Define o caminho da pasta de banco de dados dentro desse diretório
+                nome_pasta = os.path.join(diretorio_atual, "Banco-de-dados")
                 nome_arquivo = "dados-form-vnsa.json"
                 caminho_arquivo = os.path.join(nome_pasta, nome_arquivo)
+
+                # 3. Cria a pasta se ela não existir no local correto
+                if not os.path.exists(nome_pasta):
+                    os.makedirs(nome_pasta)
 
                 if not os.path.exists(nome_pasta):
                     os.makedirs(nome_pasta)
@@ -215,8 +223,9 @@ def iniciar_programa():
 
                 # 3. Cria o registro com esse número fácil
                 dados_form = {
-                    form.matricula_fiscal: {
-                        "id-do-registro": proximo_id,
+                    "id-do-registro": proximo_id,
+                    "matricula_do_fiscal": form.matricula_fiscal,
+                    "detalhes": {
                         "data": [form.data_anotacao, form.hora_anotacao],
                         "numero_da_linha": form.numero_da_linha,
                         "ponto_de_controle": form.ponto_de_controle,
@@ -227,7 +236,7 @@ def iniciar_programa():
                         "tempo_de_viagem": form.tempo_viagem_total,
                         "roleta_inicial": form.roleta_inicial,
                         "roleta_local": form.roleta_local
-                    }
+                        }
                 }
 
                 # 4. Adiciona e salva
