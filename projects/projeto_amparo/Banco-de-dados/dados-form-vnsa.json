@@ -55,5 +55,43 @@
             "roleta_inicial": 13100,
             "roleta_local": 13152
         }
+    },
+    {
+        "id-do-registro": 4,
+        "matricula_do_fiscal": 11175,
+        "detalhes": {
+            "data": [
+                "16/01/2026",
+                "22:56:59"
+            ],
+            "numero_da_linha": "2146D",
+            "ponto_de_controle": "ESTAÇÃO N.S. MERCÊS (RIO)",
+            "numero_do_carro": 93,
+            "matricula_do_motorista": 5346,
+            "hora_de_chegada": "08:30",
+            "hora_de_saida": "07:30",
+            "tempo_de_viagem": "01:00",
+            "roleta_inicial": 40100,
+            "roleta_local": 40150
+        }
+    },
+    {
+        "id-do-registro": 5,
+        "matricula_do_fiscal": 11175,
+        "detalhes": {
+            "data": [
+                "16/01/2026",
+                "23:01:37"
+            ],
+            "numero_da_linha": "4146D",
+            "ponto_de_controle": "ESTAÇÃO N.S. MERCÊS (RIO)",
+            "numero_do_carro": 6,
+            "matricula_do_motorista": 8310,
+            "hora_de_chegada": "12:07",
+            "hora_de_saida": "09:25",
+            "tempo_de_viagem": "02:42",
+            "roleta_inicial": 19887,
+            "roleta_local": 19892
+        }
     }
 ]
