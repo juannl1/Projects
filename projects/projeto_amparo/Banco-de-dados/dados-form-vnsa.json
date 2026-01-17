@@ -36,5 +36,24 @@
             "roleta_inicial": 56500,
             "roleta_local": 56558
         }
+    },
+    {
+        "id-do-registro": 3,
+        "matrícula_do_fiscal": 1,
+        "detalhes": {
+            "data": [
+                "17/01/2026",
+                "15:57:42"
+            ],
+            "número_da_linha": "2146D",
+            "ponto_de_controle": "ESTAÇÃO N.S. MERCÊS (RIO)",
+            "número_do_carro": 1,
+            "matrícula_do_motorista": 1,
+            "hora_de_chegada": "00:01",
+            "hora_de_saida": "00:01",
+            "tempo_de_viagem": "00:00",
+            "roleta_inicial": 1,
+            "roleta_local": 1
+        }
     }
 ]

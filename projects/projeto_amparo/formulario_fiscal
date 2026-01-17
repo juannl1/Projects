@@ -208,23 +208,7 @@ def iniciar_programa():
             form.verificar_lotacao(form.roleta_inicial, form.roleta_local)
 
             verificar_infos = int(input(f"Matricula do fiscal: {form.matricula_fiscal}\nPonto de controle: {form.ponto_de_controle}\nNúmero do Carro: {form.numero_do_carro}\nMatrícula do Motorista: {form.matricula_do_motorista}\nHora de saída: {form.hora_de_saida}\nHora de chegada: {form.hora_de_chegada}\nTempo de viagem total: {form.tempo_viagem_total}\nRoleta Inicial: {form.roleta_inicial}\nRoleta Final: {form.roleta_local}\n\n1. Salvar Informações\n2. Editar Informações\n > "))
-            
-            dados_form = {
-                    "id-do-registro": proximo_id,
-                    "matrícula_do_fiscal": form.matricula_fiscal,
-                    "detalhes": {
-                        "data": [form.data_anotacao, form.hora_anotacao],
-                        "número_da_linha": form.numero_da_linha,
-                        "ponto_de_controle": form.ponto_de_controle,
-                        "número_do_carro": form.numero_do_carro,
-                        "matrícula_do_motorista": form.matricula_do_motorista,
-                        "hora_de_chegada": form.hora_de_chegada,
-                        "hora_de_saida": form.hora_de_saida,
-                        "tempo_de_viagem": form.tempo_viagem_total,
-                        "roleta_inicial": form.roleta_inicial,
-                        "roleta_local": form.roleta_local
-                        }
-                }
+
 
             if verificar_infos == 1:
 
@@ -253,8 +237,22 @@ def iniciar_programa():
                 # 2. Gera o ID numérico simples (Ex: 1, 2, 3...)
                 proximo_id = len(historico) + 1
 
-                
-                
+                dados_form = {
+                    "id-do-registro": proximo_id,
+                    "matrícula_do_fiscal": form.matricula_fiscal,
+                    "detalhes": {
+                        "data": [form.data_anotacao, form.hora_anotacao],
+                        "número_da_linha": form.numero_da_linha,
+                        "ponto_de_controle": form.ponto_de_controle,
+                        "número_do_carro": form.numero_do_carro,
+                        "matrícula_do_motorista": form.matricula_do_motorista,
+                        "hora_de_chegada": form.hora_de_chegada,
+                        "hora_de_saida": form.hora_de_saida,
+                        "tempo_de_viagem": form.tempo_viagem_total,
+                        "roleta_inicial": form.roleta_inicial,
+                        "roleta_local": form.roleta_local
+                        }
+                }
 
                 # 4. Adiciona e salva
                 historico.append(dados_form)
