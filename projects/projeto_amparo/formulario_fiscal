@@ -1,15 +1,12 @@
 from datetime import datetime, timedelta
-import json
+import pandas as pd
 import os
-
-
 
 class FormularioOnibus():
     def __init__(self):
-        
         self.matricula_fiscal = None 
-        self.numero_da_linha = None # posição na lista
-        self.ponto_de_controle = None # posição na lista
+        self.numero_da_linha = None 
+        self.ponto_de_controle = None 
         self.numero_do_carro = None
         self.matricula_do_motorista = None
         self.hora_de_saida = None
@@ -21,60 +18,48 @@ class FormularioOnibus():
         self.hora_anotacao = None
         self.pessoas_em_pe = None
 
-        # data e hora exata da anotação
+        # Atualiza data e hora no momento da criação do objeto
         agora = datetime.now()
         self.data_anotacao = agora.strftime("%d/%m/%Y")
         self.hora_anotacao = agora.strftime("%H:%M:%S")
 
-# Métodos
-
-    # Verificar se há pessoas em pé no carro
     def verificar_lotacao(self, roleta_inicial, roleta_local):
+
         calculo_de_pessoas_no_onibus = roleta_local - roleta_inicial
         calculo_de_pessoas_em_pe = calculo_de_pessoas_no_onibus - 52
 
         if calculo_de_pessoas_em_pe >= 1:
             self.pessoas_em_pe = calculo_de_pessoas_em_pe
 
-
         if calculo_de_pessoas_no_onibus > 52:
-            print(f"Ônibus lotado {calculo_de_pessoas_no_onibus}/52\n{calculo_de_pessoas_em_pe} pessoas em pé\n\n")
+            print(f"Ônibus lotado {calculo_de_pessoas_no_onibus}/52\n{calculo_de_pessoas_em_pe} pessoas em pé\n")
 
         elif calculo_de_pessoas_no_onibus < 52:
             calculo_vagas = 52 - calculo_de_pessoas_no_onibus 
-            print(f"Ônibus com {calculo_vagas} vagas\nVagas no Ônibus {calculo_de_pessoas_no_onibus}/52\n\n")
+            print(f"Ônibus com {calculo_vagas} vagas\nVagas no Ônibus {calculo_de_pessoas_no_onibus}/52\n")
 
         else:
-            print("Ônibus lotado...\nSem vagas no Ônibus 52/52\n\n")
-        
-    
-    # Verificando quanto tempo demorou para chegar no destino
+            print("Ônibus lotado... Sem vagas (52/52)\n")
+
     def calcular_percurso(self, hora_de_saida, hora_chegada):
-        # 1. Limpeza e padronização dos inputs
         def limpar(h):
             h = h.replace(":", "").strip()
-            return h.zfill(4) # 4 dígitos (ex: "730" vira "0730")
+            return h.zfill(4)
 
         saida_limpa = limpar(hora_de_saida)
         chegada_limpa = limpar(hora_chegada)
-
-        # 2. Converte para objetos datetime para poder calcular
         obj_saida = datetime.strptime(saida_limpa, "%H%M")
         obj_chegada = datetime.strptime(chegada_limpa, "%H%M")
 
-        # 3. CALCULA O TEMPO DE VIAGEM
         if obj_chegada < obj_saida:
             duracao = (obj_chegada + timedelta(days=1)) - obj_saida
         else:
             duracao = obj_chegada - obj_saida
         
-        # Salva a duração formatada em uma variável (ex: "02:10")
         total_segundos = int(duracao.total_seconds())
         horas = total_segundos // 3600
         minutos = (total_segundos % 3600) // 60
         self.tempo_viagem_total = f"{horas:02d}:{minutos:02d}"
-
-        # Retornamos os objetos caso você precise usar as horas individualmente depois
         return obj_saida.strftime("%H:%M"), obj_chegada.strftime("%H:%M")
 
 
@@ -82,213 +67,96 @@ class FormularioOnibus():
 
 
 
-# INICIANDO FORM
+# ----------------------- INICIANDO FORMULÁRIO -----------------------
 
-
-form = FormularioOnibus() # criando objeto
-def iniciar_programa():
-
-    while True:
-        try:
-            matricula_fiscal = int(input("\n\nNúmero da matrícula: ")) # Upgrade futuro: consultar a matrícula no banco de dados(.json)
-            
-            form.matricula_fiscal = matricula_fiscal
-            break
-
-        except ValueError:
-            print("\nInválido\nTente Novamente...\n")
-
-    while True:
-        try:
-
-            lista_pontos_de_controle = ["ESTAÇÃO N.S. MERCÊS (RIO)", "ESTAÇÃO JOÃO BRASIL (NIT)", "ESTAÇÃO N.S. MERCÊS (VOLTA)", "ESTAÇÃO JOÃO BRASIL (VOLTA)"]
-
-            ponto_de_controle = int(input(f"\n1. {lista_pontos_de_controle[0]}\n2. {lista_pontos_de_controle[1]}\n3. {lista_pontos_de_controle[2]}\n4. {lista_pontos_de_controle[3]}\n\nEscolha o ponto de controle: "))
-
-            if ponto_de_controle in [1 ,2 ,3 ,4]:
-                form.ponto_de_controle = lista_pontos_de_controle[ponto_de_controle - 1]
-                break
-
-            else:
-                raise ValueError
-
-        except ValueError:
-            print("\nInválido\nTente Novamente...\n")
-
-    while True:
-        try:
-            lista_de_linhas_Joao_brasil = ("2144R", "4144R")
-            lista_de_linhas_merces = ("2146D", "4146D", "6146D", "2590R")
-
-            if ponto_de_controle == 1 or ponto_de_controle == 3:
-                
-                numero_da_linha = int(input(f"1. {lista_de_linhas_merces[0]}\n2. {lista_de_linhas_merces[1]}\n3. {lista_de_linhas_merces[2]}\n4. {lista_de_linhas_merces[3]}\n\nEscolha a linha: "))
-                
-                if numero_da_linha in [1, 2, 3, 4]:
-                    form.numero_da_linha = lista_de_linhas_merces[numero_da_linha - 1]
-                    break
-
-                else:
-                    raise ValueError
-
-            elif ponto_de_controle == 2 or ponto_de_controle == 4:
-                numero_da_linha = int(input(f"1. {lista_de_linhas_Joao_brasil[0]}\n2. {lista_de_linhas_Joao_brasil[1]}\n\nEscolha a linha: "))
-
-                if numero_da_linha in [1, 2]:
-                    form.numero_da_linha = lista_de_linhas_Joao_brasil[numero_da_linha - 1]
-
-                    break
-                else:
-                    raise ValueError
-
-            else:
-                raise ValueError
-            
-        except ValueError:
-            print("\nInválido\nTente Novamente...\n")
-
-
-    while True:
-        try:
-            numero_do_carro = int(input("\nNúmero do carro: "))
-
-            if numero_do_carro <= 500: #supondo que o limite da frota seja 500 carros
-                form.numero_do_carro = numero_do_carro
-                break
-
-            else:
-                raise ValueError
+while True:
+    form = FormularioOnibus()
+    
+    # --- COLETA DE DADOS ---
+    try:
+        form.matricula_fiscal = int(input("\nNúmero da matrícula fiscal: "))
         
-        except ValueError:
-            print("\nInválido\nTente Novamente...\n")
+        lista_pontos = ["ESTAÇÃO N.S. MERCÊS (RIO)", "ESTAÇÃO JOÃO BRASIL (NIT)", "ESTAÇÃO N.S. MERCÊS (VOLTA)", "ESTAÇÃO JOÃO BRASIL (VOLTA)"]
+        print("\nEscolha o ponto de controle:")
 
-    while True:
-        try:
-            matricula_do_motorista = int(input("\nMatrícula do motorista: ")) # Upgrade futuro: consultar a matrícula no banco de dados(.json)
-            form.matricula_do_motorista = matricula_do_motorista
-            break
+        for i, p in enumerate(lista_pontos, 1): print(f"{i}. {p}") # MOSTRANDO A LISTA DE PONTOS PARA O USUÁRIO
 
-        except ValueError:
-            print("\nInválido\nTente Novamente...\n")
+        ponto_idx = int(input(" > "))
+        form.ponto_de_controle = lista_pontos[ponto_idx-1]
 
-    while True:
-        try:
-            entrada = input("\nHora de saída (ex: 07:50, 750): ")
-            chegada = input("Hora de chegada (ex: 09:00, 900): ")
-            
-            # 1. Calcule o percurso (que já salva o tempo de viagem)
-            form.hora_de_saida, form.hora_de_chegada = form.calcular_percurso(entrada, chegada)
-            break
-
-        except ValueError:
-            print("\nInválido! Tente novamente...\n")
-
-    while True:
-        try:
-            roleta_inicial = int(input("\nRoleta Inicial: "))
-            roleta_local = int(input("Roleta Final: "))
-
-            if roleta_inicial - roleta_local < 72:
-
-                form.roleta_inicial = roleta_inicial
-                form.roleta_local = roleta_local
-
-                break
-            else:
-                print("\nInválido! O número da roleta deu mais de 72/52 passageiros superlotação\n")
-                raise ValueError
-
-            
-        except ValueError:
-            print("\nInválido! Tente novamente...\n")
-
-    print("\n\n----- Relatório -----\n")
-    while True:
-        try:
-            form.verificar_lotacao(form.roleta_inicial, form.roleta_local)
-
-            verificar_infos = int(input(f"Matricula do fiscal: {form.matricula_fiscal}\nPonto de controle: {form.ponto_de_controle}\nNúmero do Carro: {form.numero_do_carro}\nMatrícula do Motorista: {form.matricula_do_motorista}\nHora de saída: {form.hora_de_saida}\nHora de chegada: {form.hora_de_chegada}\nTempo de viagem total: {form.tempo_viagem_total}\nRoleta Inicial: {form.roleta_inicial}\nRoleta Final: {form.roleta_local}\n\n1. Salvar Informações\n2. Editar Informações\n > "))
-
-
-            if verificar_infos == 1:
-
-                # Adicionando informação no .json
-                diretorio_atual = os.path.dirname(os.path.abspath(__file__))
-
-                # 2. Define o caminho da pasta de banco de dados dentro desse diretório
-                nome_pasta = os.path.join(diretorio_atual, "Banco-de-dados")
-                nome_arquivo = "dados-form-vnsa.json"
-                caminho_arquivo = os.path.join(nome_pasta, nome_arquivo)
-
-                # 3. Cria a pasta se ela não existir no local correto
-                if not os.path.exists(nome_pasta):
-                    os.makedirs(nome_pasta)
-
-                # 1. Carrega o histórico para saber o próximo número do id
-                if os.path.exists(caminho_arquivo):
-                    with open(caminho_arquivo, "r", encoding="utf-8") as arquivo:
-                        try:
-                            historico = json.load(arquivo)
-                        except json.JSONDecodeError:
-                            historico = []
-                else:
-                    historico = []
-
-                # 2. Gera o ID numérico simples (Ex: 1, 2, 3...)
-                proximo_id = len(historico) + 1
-
-                dados_form = {
-                    "id-do-registro": proximo_id,
-                    "matrícula_do_fiscal": form.matricula_fiscal,
-                    "detalhes": {
-                        "data": [form.data_anotacao, form.hora_anotacao],
-                        "número_da_linha": form.numero_da_linha,
-                        "ponto_de_controle": form.ponto_de_controle,
-                        "número_do_carro": form.numero_do_carro,
-                        "matrícula_do_motorista": form.matricula_do_motorista,
-                        "hora_de_chegada": form.hora_de_chegada,
-                        "hora_de_saida": form.hora_de_saida,
-                        "tempo_de_viagem": form.tempo_viagem_total,
-                        "roleta_inicial": form.roleta_inicial,
-                        "roleta_local": form.roleta_local
-                        }
-                }
-
-                # 4. Adiciona e salva
-                historico.append(dados_form)
-                with open(caminho_arquivo, "w", encoding="utf-8") as arquivo:
-                    json.dump(historico, arquivo, indent=4, ensure_ascii=False)
-
-                print(f"Sucesso! Registro salvo com o ID número: {proximo_id}")
-                break
-
-            elif verificar_infos == "2":
-                while True:
-                    try:
-                        decisao = str(input("Deseja refazer? (s/n): ")).lower().strip()
-
-                        if decisao == "s":
-                            print("Ok")
-                            iniciar_programa()
-                            break
-
-                        elif decisao == "n":
-                            print("\nOk, finalizando...\n")
-                            exit()
-
-                        else:
-                            raise ValueError
-                        
-                    except ValueError:
-                        print("\nResposta Inválida\nTente novamente...\n")
-            else:
-                print("\nResposta Inválida\nTente novamente...\n")
-                raise ValueError
-
-        except ValueError:
-            print("\nResposta Inválida\nTente novamente...\n")
-
+        linhas_jb = ("2144R", "4144R")
+        linhas_merces = ("2146D", "4146D", "6146D", "2590R")
         
+        if ponto_idx in [1, 3]:
+            print("\nEscolha a linha:")
+            for i, l in enumerate(linhas_merces, 1): print(f"{i}. {l}") # MOSTRANDO A LISTA DE LINHAS DA MERÇES PARA O USUÁRIO
 
+            form.numero_da_linha = linhas_merces[int(input(" > ")) - 1]
+        else:
+            print("\nEscolha a linha:")
+            for i, l in enumerate(linhas_jb, 1): print(f"{i}. {l}") # MOSTRANDO A LISTA DE LINHAS DA JOÃO BRASIL PARA O USUÁRIO
 
-iniciar_programa()
+            form.numero_da_linha = linhas_jb[int(input(" > "))-  1]
+
+        form.numero_do_carro = int(input("\nNúmero do carro: "))
+        form.matricula_do_motorista = int(input("Matrícula do motorista: "))
+        
+        h_saida = input("\nHora de saída (ex: 07:50): ")
+        h_chegada = input("Hora de chegada (ex: 09:00): ")
+        form.hora_de_saida, form.hora_de_chegada = form.calcular_percurso(h_saida, h_chegada)
+
+        form.roleta_inicial = int(input("\nRoleta Inicial: "))
+        form.roleta_local = int(input("Roleta Final: "))
+        
+        # --- RELATÓRIO E SALVAMENTO ---
+        print("\n" + "="*30 + "\nRELATÓRIO DE CONFERÊNCIA\n" + "="*30)
+
+        form.verificar_lotacao(form.roleta_inicial, form.roleta_local)
+
+        print(f"Linha: {form.numero_da_linha} | Carro: {form.numero_do_carro}")
+        print(f"Tempo Total: {form.tempo_viagem_total}")
+        
+        opcao = input("\n1. Salvar Informações\n2. Corrigir (Reiniciar)\n0. Sair\n > ")
+
+        if opcao == "1":
+            # Configuração de Caminhos (FORA DO IF DE EXISTÊNCIA)
+            caminho_script = os.path.dirname(os.path.abspath(__file__))
+            pasta_banco = os.path.join(caminho_script, 'banco-de-dados')
+            
+            if not os.path.exists(pasta_banco):
+                os.makedirs(pasta_banco)
+            
+            caminho_final = os.path.join(pasta_banco, 'base-de-dados-form.csv')
+
+            
+            dados_form = {
+                "Data": [form.data_anotacao],
+                "Hora Anotação": [form.hora_anotacao],
+                "Fiscal": [form.matricula_fiscal],
+                "Linha": [form.numero_da_linha],
+                "Ponto": [form.ponto_de_controle],
+                "Carro": [form.numero_do_carro],
+                "Motorista": [form.matricula_do_motorista],
+                "Saída": [form.hora_de_saida],
+                "Chegada": [form.hora_de_chegada],
+                "Duração": [form.tempo_viagem_total],
+                "Roleta Inicial": [form.roleta_inicial],
+                "Roleta Local": [form.roleta_local]
+            }
+
+            df = pd.DataFrame(dados_form)
+            # SALVANDO NO CSV
+            df.to_csv(caminho_final, mode="a", index=False, header=not os.path.exists(caminho_final), sep=';', encoding="utf-8-sig")
+            print(f"\n✅ Salvo com sucesso em: {caminho_final}")
+            
+            cont = input("\nDeseja realizar novo cadastro? (s/n): ").lower()
+            if cont != 's': break
+
+        elif opcao == "0":
+            break
+        else:
+            print("\nReiniciando formulário...")
+
+    except Exception as e:
+        print(f"\n❌ Erro: {e}. Tente novamente.")
+
