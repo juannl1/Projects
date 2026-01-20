@@ -160,3 +160,4 @@ while True:
     except Exception as e:
         print(f"\n❌ Erro: {e}. Tente novamente.")
 
+        
