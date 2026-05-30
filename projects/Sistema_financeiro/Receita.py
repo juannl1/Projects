@@ -27,8 +27,6 @@ class Receita(ControleFinanceiro):
 
     def obter_data(self) -> str:
         return datetime.now().strftime('%d/%m/%Y às %H:%M')
-    
-
 
 def testando():
     receita1 = Receita(3000, "Marketing")

@@ -36,7 +36,7 @@ class GerenciadorFinanceiro:
                 }
                 dados.append(receita)
             else:
-                print("Deu ruim")
+                print("ERROR")
         
         return dados
     
@@ -51,15 +51,15 @@ def testando():
     despesa3 = Despesa(10000, "ADM")
 
     gerenciador = GerenciadorFinanceiro()
+
     gerenciador.adicionar_despesa(despesa1)
     gerenciador.adicionar_despesa(despesa2)
     gerenciador.adicionar_despesa(despesa3)
-
     gerenciador.adicionar_receita(receita1)
     gerenciador.adicionar_receita(receita2)
     gerenciador.adicionar_receita(receita3)
 
-    print(gerenciador.dados_relatorio())
-    
-testando()
+    print(f"dado 1: {gerenciador.dados_relatorio()[1]} \n\ndado 2: {gerenciador.dados_relatorio()[0]}\n\ndado 3: {gerenciador.dados_relatorio()[2]}\n\ndado 4: {gerenciador.dados_relatorio()[3]}\n\ndado 5: {gerenciador.dados_relatorio()[4]}\n\ndado 6: {gerenciador.dados_relatorio()[5]}")
+
+#testando()
 
