@@ -1,9 +1,0 @@
-# tem que fazer ainda 
-
-pandas 
-python 3.14.3
-datetime
-json
-
-
-

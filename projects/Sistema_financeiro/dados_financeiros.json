@@ -1,0 +1,33 @@
+[
+    {
+        "data": "30/05/2026 às 23:01",
+        "tipo": "Receita",
+        "setor": "TI",
+        "valor_bruto": 9000.0,
+        "valor_imposto": 2160.0,
+        "valor_liquido": 6840.0
+    },
+    {
+        "data": "30/05/2026 às 23:01",
+        "tipo": "Receita",
+        "setor": "CAPTAO PATRIA",
+        "valor_bruto": 2000.0,
+        "valor_imposto": 160.0,
+        "valor_liquido": 1840.0
+    },
+    {
+        "data": "30/05/2026 às 23:01",
+        "tipo": "Despesa",
+        "setor": "BILLY BRUTO",
+        "valor_saida": -100.0
+    },
+    {
+        "data": "30/05/2026 às 23:02",
+        "tipo": "Despesa",
+        "setor": "cadastramento",
+        "valor_saida": -1200.0
+    },
+    {
+        "lucro": 7380.0
+    }
+]
