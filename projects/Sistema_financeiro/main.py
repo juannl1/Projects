@@ -3,8 +3,11 @@ from classes.Receita import Receita
 from classes.Despesa import Despesa
 from classes.ExportadorExcel import ExportadorExcel
 from classes.ExportadorJSON import ExportadorJSON
+import os
 
 #EMOJIS: 📊✅❌⚠️
+    
+os.system("cls")
 
 def executar_sistema():
     dados = [
@@ -59,9 +62,11 @@ def executar_sistema():
     gerar_planilha.exportar(gerenciador.dados_relatorio())
     gerar_JSON.exportar(gerenciador.dados_relatorio())
     print("\n")
+    print("Sistema executado com sucesso !!")
 
 
 def executar_sistema_usuario():
+    
     gerenciador = GerenciadorFinanceiro()
 
     while True:
@@ -79,7 +84,7 @@ def executar_sistema_usuario():
         if opcao == '1':
             try:
                 valor_bruto = float(input("Digite o valor bruto da Receita: R$ "))
-                setor = input("Digite o setor da Receita (ex: TI, Marketing): ")
+                setor = str(input("Digite o setor da Receita (ex: TI, Marketing): "))
                 
                 nova_receita = Receita(valor_bruto, setor)
                 gerenciador.adicionar_transacao(nova_receita)
@@ -112,6 +117,7 @@ def executar_sistema_usuario():
                 gerar_planilha.exportar(dados_relatorio)
                 gerar_JSON.exportar(dados_relatorio)
                 print("\n✅ Relatórios exportados com sucesso! Verifique os arquivos gerados.")
+                break
             except Exception as erro:
                 print(f"\n❌ Ocorreu um erro ao exportar os arquivos: {erro}")
 
@@ -123,5 +129,5 @@ def executar_sistema_usuario():
             print("\n❌ Opção inválida. Por favor, escolha um número entre 0 e 3.")
 
 
-#executar_sistema()
-executar_sistema_usuario()
+#executar_sistema() # O sistema roda sem precisar de inputs
+executar_sistema_usuario() # Programa principal
