@@ -64,7 +64,6 @@ def executar_sistema():
     print("\n")
     print("Sistema executado com sucesso !!")
 
-
 def executar_sistema_usuario():
     
     gerenciador = GerenciadorFinanceiro()
@@ -105,7 +104,7 @@ def executar_sistema_usuario():
 
         elif opcao == '3':
             dados_relatorio = gerenciador.dados_relatorio()
-            
+
             if not dados_relatorio:
                 print("\n⚠️  Não há transações cadastradas para exportar. Adicione receitas ou despesas primeiro.")
                 continue
@@ -129,5 +128,5 @@ def executar_sistema_usuario():
             print("\n❌ Opção inválida. Por favor, escolha um número entre 0 e 3.")
 
 
-#executar_sistema() # O sistema roda sem precisar de inputs
-executar_sistema_usuario() # Programa principal
+executar_sistema() # O sistema roda sem precisar de inputs
+#executar_sistema_usuario() # Programa principal
