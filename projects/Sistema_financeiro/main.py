@@ -104,7 +104,7 @@ def executar_sistema_usuario():
             if not dados_relatorio:
                 print("\n⚠️  Não há transações cadastradas para exportar. Adicione receitas ou despesas primeiro.")
                 continue
-
+                
             try:
                 gerar_planilha = ExportadorExcel()
                 gerar_JSON = ExportadorJSON()

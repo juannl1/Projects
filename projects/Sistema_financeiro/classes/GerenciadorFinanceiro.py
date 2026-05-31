@@ -40,9 +40,10 @@ class GerenciadorFinanceiro:
             else:
                 print("ERRO: Tipo de transação desconhecida.")
         
-        lucro = {
-            "lucro": total_despesas + total_liquido
-        }
-        dados.append(lucro)
+        if len(dados) > 0:
+            lucro = {
+                "lucro": total_despesas + total_liquido
+            }
+            dados.append(lucro)
 
         return dados
