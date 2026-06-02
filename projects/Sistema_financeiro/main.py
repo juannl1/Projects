@@ -128,5 +128,5 @@ def executar_sistema_usuario():
             print("\n❌ Opção inválida. Por favor, escolha um número entre 0 e 3.")
 
 
-executar_sistema() # O sistema roda sem precisar de inputs
-#executar_sistema_usuario() # Programa principal
+#executar_sistema() # O sistema roda sem precisar de inputs
+executar_sistema_usuario() # Programa principal
