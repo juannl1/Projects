@@ -83,6 +83,7 @@ def executar_sistema_usuario():
         if opcao == '1':
             try:
                 valor_bruto = float(input("Digite o valor bruto da Receita: R$ "))
+
                 setor = str(input("Digite o setor da Receita (ex: TI, Marketing): "))
                 
                 nova_receita = Receita(valor_bruto, setor)
@@ -128,5 +129,5 @@ def executar_sistema_usuario():
             print("\n❌ Opção inválida. Por favor, escolha um número entre 0 e 3.")
 
 
-#executar_sistema() # O sistema roda sem precisar de inputs
-executar_sistema_usuario() # Programa principal
+executar_sistema() # O sistema roda sem precisar de inputs
+#executar_sistema_usuario() # Programa principal
