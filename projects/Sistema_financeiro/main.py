@@ -9,7 +9,7 @@ import os
     
 os.system("cls")
 
-def executar_sistema():
+def testar_sistema():
     dados = [
         Receita(3500.00, "Marketing - Consultoria SEO"),
         Receita(5200.00, "Vendas - Licença de Software PME"),
@@ -54,7 +54,6 @@ def executar_sistema():
     for transacao in dados:
         gerenciador.adicionar_transacao(transacao)
 
-
     gerar_planilha = ExportadorExcel()
     gerar_JSON = ExportadorJSON()
 
@@ -65,7 +64,7 @@ def executar_sistema():
     print("Sistema executado com sucesso !!")
 
 def executar_sistema_usuario():
-    
+
     gerenciador = GerenciadorFinanceiro()
 
     while True:
@@ -83,8 +82,12 @@ def executar_sistema_usuario():
         if opcao == '1':
             try:
                 valor_bruto = float(input("Digite o valor bruto da Receita: R$ "))
-                setor = str(input("Digite o setor da Receita (ex: TI, Marketing): "))
-                
+
+                if valor_bruto < 0:
+                    raise ValueError
+
+                setor = str(input("Digite o setor da Receita (ex: TI, Marketing): ")).title().strip()
+
                 nova_receita = Receita(valor_bruto, setor)
                 gerenciador.adicionar_transacao(nova_receita)
                 print(f"\nReceita de R$ {valor_bruto:.2f} adicionada com sucesso ao setor '{setor}'!")
@@ -94,6 +97,10 @@ def executar_sistema_usuario():
         elif opcao == '2':
             try:
                 valor_saida = float(input("Digite o valor da Despesa: R$ "))
+
+                if valor_bruto < 0:
+                    raise ValueError
+                
                 setor = input("Digite o setor da Despesa (ex: Financeiro, RH): ")
                 
                 nova_despesa = Despesa(valor_saida, setor)
@@ -128,5 +135,5 @@ def executar_sistema_usuario():
             print("\n❌ Opção inválida. Por favor, escolha um número entre 0 e 3.")
 
 
-executar_sistema() # O sistema roda sem precisar de inputs
-#executar_sistema_usuario() # Programa principal
+#testar_sistema() # O sistema roda sem precisar de inputs
+executar_sistema_usuario() # Programa principal
