@@ -84,7 +84,7 @@ def executar_sistema_usuario():
                 valor_bruto = float(input("Digite o valor bruto da Receita: R$ "))
 
                 if valor_bruto < 0:
-                    raise ValueError
+                    raise ValueError("Valor negativo")
 
                 setor = str(input("Digite o setor da Receita (ex: TI, Marketing): ")).title().strip()
 
@@ -135,5 +135,5 @@ def executar_sistema_usuario():
             print("\n❌ Opção inválida. Por favor, escolha um número entre 0 e 3.")
 
 
-#testar_sistema() # O sistema roda sem precisar de inputs
+#testar_sistema()
 executar_sistema_usuario() # Programa principal

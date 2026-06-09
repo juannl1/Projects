@@ -8,13 +8,13 @@ class Receita(ControleFinanceiro):
         self.data = self.obter_data()
 
         self.imposto1 = 0.08 # valor_bruto total até 6.000
-        self.imposto2 = 0.24 # valor_bruto total entre 6000 e 15.000
-        self.imposto3 = 0.33 # valor_bruto total maior que 30.000
+        self.imposto2 = 0.24 # valor_bruto total entre 6000 e < 30000
+        self.imposto3 = 0.35 # valor_bruto total maior que 30.000
 
     def calcular_imposto(self) -> float:
         if 0 < self.valor_bruto <= 6000:
             return self.valor_bruto * self.imposto1
-        elif 6000 < self.valor_bruto <= 15000:
+        elif 6000 < self.valor_bruto < 30000:
             return self.valor_bruto * self.imposto2
         elif self.valor_bruto >= 30000:
             return self.valor_bruto * self.imposto3
